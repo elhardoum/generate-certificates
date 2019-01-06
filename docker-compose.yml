@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  flask:
+    image: flask-app
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    volumes:
+      - ./:/app
+
+  nginx:
+    image: nginx-app
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 8020:80
+    volumes:
+      - ./public:/usr/share/nginx/html
+
