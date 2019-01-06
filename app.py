@@ -15,7 +15,6 @@ app.config['DEBUG'] = DEBUG
 @app.route('/')
 def index():
     fonts = [ sub('\.ttf$', '', basename(x)) for x in glob('./fonts/*.ttf') ]
-
     return render_template('index.html', max_file_size=TEMPLATE_MAX_FILESIZE, fonts=fonts)
 
 @app.route('/xhr', methods=['GET', 'POST'])
@@ -59,16 +58,13 @@ def xhr():
     try:
         image_data = sub('^data:image/.+;base64,', '', template)
         image = Image.open(BytesIO(b64decode( image_data )))
-        errors.append('Could not load your template image.')
     except Exception as e:
+        errors.append('Could not load your template image.')
         return Response(response=dumps({'success': False, 'errors': errors}), status=200, mimetype='application/json')
 
     font_family = sub('[^a-zA-Z-_ ]', '', font_family)
     font_path = './fonts/%s.ttf' % font_family
     font_path = font_path if isfile( font_path ) else './fonts/Impact.ttf'
-
-    print ( "\n\n", font_path, font_family, "\n\n" )
-
     font = ImageFont.truetype( font_path, fontsize )
     images = [ process_image( image.copy(), font, name, color, top_percent ) for name in names ]
 

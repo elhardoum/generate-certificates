@@ -45,7 +45,7 @@
         {
             fd.append('template', data)
 
-            xhr = xhr || new XMLHttpRequest;
+            xhr = xhr || new XMLHttpRequest
 
             if ( xhr.abort ) {
                 xhr.abort()
