@@ -7,6 +7,7 @@ from base64 import b64decode, b64encode
 from json import dumps
 from os.path import isfile, basename
 from glob import glob
+from alphabet_detector import AlphabetDetector
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = FLASK_SECRET
@@ -72,6 +73,15 @@ def xhr():
 
 def process_image(image, font, text, color, top_percent):
     draw = ImageDraw.Draw(image)
+
+    ad = AlphabetDetector()
+
+    if ad.only_alphabet_chars(text, 'ARABIC'):
+        import arabic_reshaper
+        from bidi.algorithm import get_display
+        text = get_display(arabic_reshaper.reshape(text))
+
+        print ( "\n\nArabic detected\n\n" )
 
     textWidth, textHeight = draw.textsize(text, font)
     x = image.size[0]/2 - textWidth/2

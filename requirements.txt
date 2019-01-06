@@ -1,3 +1,6 @@
 Flask==1.0.2
 uWSGI==2.0.17.1
 Pillow==5.4.0
+arabic-reshaper==2.0.14
+python-bidi==0.4.0
+alphabet-detector==0.0.7
