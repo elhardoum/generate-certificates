@@ -15,7 +15,7 @@ app.config['DEBUG'] = DEBUG
 
 @app.route('/')
 def index():
-    fonts = [ sub('\.ttf$', '', basename(x)) for x in glob('./fonts/*.ttf') ]
+    fonts = sorted([ sub('\.ttf$', '', basename(x)) for x in glob('./fonts/*.ttf') ])
     return render_template('index.html', max_file_size=TEMPLATE_MAX_FILESIZE, fonts=fonts)
 
 @app.route('/xhr', methods=['GET', 'POST'])

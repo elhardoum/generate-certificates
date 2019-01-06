@@ -58,7 +58,7 @@
                     </label>
                 </div>
                 <div class="md:w-2/3 relative">
-                    <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" name="font_family" id="font_family">
+                    <select class="block appearance-none w-full bg-grey-lighter border-2 border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-purple" name="font_family" id="font_family">
                         <option value="">&mdash; Select &mdash;</option>
                         {% for font in fonts %}
                             <option value="{{ font | escape }}" {% if 'Impact' == font %}selected{% endif %}>{{ font | escape }}</option>
