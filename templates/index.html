@@ -7,12 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Tool for Mr. Said</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" />
-    <style type="text/css">
-        @media print {
-            #content > form { display: none }
-            #images img { display: block; page-break-after: always; }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
 </head>
 <body class="h-full bg-grey-lightest">
     <div id="content" style="max-width:900px" class="m-auto mt-6 p-4">
@@ -47,7 +42,7 @@
                     </label>
                 </div>
                 <div class="md:w-2/3">
-                    <input class="bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple" id="color" name="color" type="color" value="#ffffff" />
+                    <input class="bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple" id="color" name="color" type="color" value="#ffffff" />
                 </div>
             </div>
 
@@ -102,6 +97,7 @@
                     <button class="shadow bg-purple hover:bg-purple-light focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                         Generate Certificates
                     </button>
+                    <span class="text-xs text-grey ml-2 hidden" id="loading">Loading</span>
                 </div>
             </div>
         </form>

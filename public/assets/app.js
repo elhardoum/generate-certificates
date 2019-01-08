@@ -1,7 +1,8 @@
 (function()
 {
-    var form = document.forms[0], xhr
+    var form = document.forms[0], xhr, reader
       , images_cont = document.getElementById('images')
+      , loading = document.getElementById('loading')
 
     form.addEventListener('submit', function(e)
     {
@@ -40,10 +41,13 @@
 
         fd.delete('template')
         images_cont.innerHTML = ''
+        loading.classList.remove('hidden')
 
-        file2base64(template, function(data)
+        reader = new FileReader()
+        reader.readAsDataURL(template)
+        reader.onload = function()
         {
-            fd.append('template', data)
+            fd.append('template', reader.result)
 
             xhr = xhr || new XMLHttpRequest
 
@@ -71,19 +75,11 @@
                         images_cont.appendChild(img)
                     })
                 }
+
+                loading.classList.add('hidden')
             }
 
             xhr.send(fd)
-        })
+        }
     })
-
-    var file2base64 = function(file, then)
-    {
-       var reader = new FileReader()
-       reader.readAsDataURL(file)
-       reader.onload = function ()
-       {
-         then(reader.result)
-       }
-    }
 })()
