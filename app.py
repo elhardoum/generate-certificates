@@ -18,7 +18,7 @@ def index():
     fonts = sorted([ sub('\.ttf$', '', basename(x)) for x in glob('./fonts/*.ttf') ])
     return render_template('index.html', max_file_size=TEMPLATE_MAX_FILESIZE, fonts=fonts)
 
-@app.route('/xhr', methods=['GET', 'POST'])
+@app.route('/xhr', methods=['POST'])
 def xhr():
     names, fontsize, color, template, top_percent = [], DEFAULT_FONTSIZE, None, None, DEFAULT_TOP_PERCENT
     font_family = 'Impact'
